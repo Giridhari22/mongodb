@@ -1,0 +1,38 @@
+//this is how we can create database in mongodb in terminal
+
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use  giridharidatabase //to make database if not made and if already made then we only have to use that name
+switched to db giridharidatabase
+> show dbs // now we are under the database
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db //this show the name of the database
+giridharidatabase
+> db.giridharidata
+giridharidatabase.giridharidata
+> db.giridharidata.insertOne({name:"ReactJS",type:"Front-end",videos:80,active:true}) //if we have to insert some data 
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("63245c66c17ce61627c70017")
+}
+> show dbs //now my database is created
+admin              0.000GB
+config             0.000GB
+giridharidatabase  0.000GB
+local              0.000GB
+> show collections // now we see which is this file
+giridharidata
+> db.giridharidata.find() //now by this we find the data under collection
+{ "_id" : ObjectId("63245c66c17ce61627c70017"), "name" : "ReactJS", "type" : "Front-end", "videos" : 80, "active" : true }
+> db.giridharidata.find().pretty()
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}

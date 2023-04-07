@@ -1,0 +1,72 @@
+
+>mongo // to start database
+
+> show dbs // show the info of database which is already created
+admin              0.000GB
+config             0.000GB
+giridharidatabase  0.000GB
+local              0.000GB
+> use giridharidatabase   //name of my databse 
+switched to db giridharidatabase
+
+> db // go under the databse
+giridharidatabase
+> db.giridharidatabase.find().pretty() //info of the database
+> db.giridharidata.find().pretty()
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}
+
+> show collections //there is name of document
+giridharidata
+
+//to insert one document
+> db.giridharidata.insertOne({name:"Giridhari jha", type:"Database", videos:5, active:true})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6324b90d6e62cd6c58c4ca8f")
+}
+
+//to insert many document in object format
+> db.giridharidata.insertMany([{name:"Giridhari jha",type:"BackEnd",videos:4, active:true},{name:"Raju",type:"normal",videos:876, active:true}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("6324ba266e62cd6c58c4ca90"),
+                ObjectId("6324ba266e62cd6c58c4ca91")
+        ]
+}
+> db.giridharidata.find().pretty() //all the data which is under the databse
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324b90d6e62cd6c58c4ca8f"),
+        "name" : "Giridhari jha",
+        "type" : "Database",
+        "videos" : 5,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca90"),
+        "name" : "Giridhari jha",
+        "type" : "BackEnd",
+        "videos" : 4,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca91"),
+        "name" : "Raju",
+        "type" : "normal",
+        "videos" : 876,
+        "active" : true
+}
+>

@@ -1,0 +1,122 @@
+//mongodb
+//In this file we gonna see crud3 - means update
+//UpdateOne() => db.collection_name.updateOne(<filter>,<update>)
+//UpdateMany() => db.collection_name.update(<filter>,<update>)
+
+>mongo
+
+>  show dbs
+admin              0.000GB
+config             0.000GB
+giridharidatabase  0.000GB
+local              0.000GB
+> use giridharidatabase
+switched to db giridharidatabase
+> db
+giridharidatabase
+> show collections
+giridharidata
+> db.giridharidata.find().pretty()
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324b90d6e62cd6c58c4ca8f"),
+        "name" : "Giridhari jha",
+        "type" : "Database",
+        "videos" : 5,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca90"),
+        "name" : "Giridhari jha",
+        "type" : "BackEnd",
+        "videos" : 4,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca91"),
+        "name" : "Raju",
+        "type" : "normal",
+        "videos" : 876,
+        "active" : true
+}
+
+//1:Update the Raju type value to "Full Stack". 
+
+
+> db.giridharidata.updateOne({name:"Raju"}, {$set:{type:"Front End"} } )
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.giridharidata.find().pretty()
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324b90d6e62cd6c58c4ca8f"),
+        "name" : "Giridhari jha",
+        "type" : "Database",
+        "videos" : 5,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca90"),
+        "name" : "Giridhari jha",
+        "type" : "BackEnd",
+        "videos" : 4,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca91"),
+        "name" : "Raju",
+        "type" : "Front End",
+        "videos" : 876,
+        "active" : true
+}
+
+//Update all the fields with the type value =to "Front End" and set the value of status to False
+
+> db.giridharidata.updateOne({name:"ReactJS"}, {$set:{type:"Front End"} } )
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+// The $set operator replaces the value of a field with the specific value.
+
+> db.giridharidata.updateMany({type:"Front End"}, {$set:{active:false} } )
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 1 }
+> db.giridharidata.find().pretty()
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front End",
+        "videos" : 80,
+        "active" : false
+}
+{
+        "_id" : ObjectId("6324b90d6e62cd6c58c4ca8f"),
+        "name" : "Giridhari jha",
+        "type" : "Database",
+        "videos" : 5,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca90"),
+        "name" : "Giridhari jha",
+        "type" : "BackEnd",
+        "videos" : 4,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca91"),
+        "name" : "Raju",
+        "type" : "Front End",
+        "videos" : 876,
+        "active" : false
+}
+>

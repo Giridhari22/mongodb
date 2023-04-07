@@ -1,0 +1,102 @@
+//crud part 2 mongoDB -Read
+//db.collection.find(query,projection)
+> show dbs
+admin              0.000GB
+config             0.000GB
+giridharidatabase  0.000GB
+local              0.000GB
+> use giridharidatabase
+switched to db giridharidatabase
+> db
+giridharidatabase
+> show collections
+giridharidata
+> db
+giridharidatabase
+//1:find all the result of the given collection
+> db.giridharidata.find()
+{ "_id" : ObjectId("63245c66c17ce61627c70017"), "name" : "ReactJS", "type" : "Front-end", "videos" : 80, "active" : true }
+{ "_id" : ObjectId("6324b90d6e62cd6c58c4ca8f"), "name" : "Giridhari jha", "type" : "Database", "videos" : 5, "active" : true }
+{ "_id" : ObjectId("6324ba266e62cd6c58c4ca90"), "name" : "Giridhari jha", "type" : "BackEnd", "videos" : 4, "active" : true }
+{ "_id" : ObjectId("6324ba266e62cd6c58c4ca91"), "name" : "Raju", "type" : "normal", "videos" : 876, "active" : true }
+//2: show the result in pretty format...
+> db.giridharidata.find().pretty()
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324b90d6e62cd6c58c4ca8f"),
+        "name" : "Giridhari jha",
+        "type" : "Database",
+        "videos" : 5,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca90"),
+        "name" : "Giridhari jha",
+        "type" : "BackEnd",
+        "videos" : 4,
+        "active" : true
+}
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca91"),
+        "name" : "Raju",
+        "type" : "normal",
+        "videos" : 876,
+        "active" : true
+}
+//we have to find the second data
+//3 we gonna pass query to find second data
+//here we pass type:"BackEnd" as a query to find that data
+
+> db.giridharidata.find({type:"BackEnd"}).pretty()
+{
+        "_id" : ObjectId("6324ba266e62cd6c58c4ca90"),
+        "name" : "Giridhari jha",
+        "type" : "BackEnd",
+        "videos" : 4,
+        "active" : true
+}
+//4.Get only mongoDb data as a output with only name field.
+// so we pass projection
+> db.giridharidata.find({type:"BackEnd"},{"name":1}).pretty()
+{ "_id" : ObjectId("6324ba266e62cd6c58c4ca90"), "name" : "Giridhari jha" }
+
+//5. Get the MongoDB data without _ID field in it.
+> db.giridharidata.find({type:"BackEnd"},{_id:0,"name":1}).pretty()
+{ "name" : "Giridhari jha" }
+
+//6. set the filter to ""active:true" and get only the first field with "active:true" value.
+> db.giridharidata.find({active:true}).pretty().limit(1)
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}
+//7. do the same 6 questio with different method
+
+
+> db.giridharidata.findOne({active:true})
+{
+        "_id" : ObjectId("63245c66c17ce61627c70017"),
+        "name" : "ReactJS",
+        "type" : "Front-end",
+        "videos" : 80,
+        "active" : true
+}
+//8. Do the same 6 question but this time , gt the 2nd field with active:true by skipping the 1st field.
+> db.giridharidata.find({active:true}).pretty().limit(1).skip(1)
+{
+        "_id" : ObjectId("6324b90d6e62cd6c58c4ca8f"),
+        "name" : "Giridhari jha",
+        "type" : "Database",
+        "videos" : 5,
+        "active" : true
+}
+>
